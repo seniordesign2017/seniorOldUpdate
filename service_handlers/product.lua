@@ -33,5 +33,7 @@ end
 value[data.alias] = data.value[2]
 value["timestamp"] = data.timestamp/1000 -- add server's timestamp
 value["pid"] = data.vendor or data.pid
+value["ip"] = data.source_ip
+value["rid"] = data.rid
 -- Write data into key/value data store
 Keystore.set({key = "identifier_" .. data.device_sn, value = to_json(value)})
