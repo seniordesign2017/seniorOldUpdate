@@ -40,7 +40,7 @@ if true then
   local data = {}
   if window == nil then window = 30 end
   -- Assumes temperature and humidity data device resources
-  local metrics = {"temperature", "pressure"}
+  local metrics = {"temperature", "pressure","flow"}
   local tags = {identity = identifier}
   local out = Tsdb.query({
     metrics = metrics,
