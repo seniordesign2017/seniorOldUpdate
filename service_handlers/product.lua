@@ -21,8 +21,9 @@ local resp = Keystore.get({key = "identifier_" .. data.device_sn})
 -- Make sure each device has the following keys stored
 local value = {
   temperature = "undefined",
-  humidity = "undefined",
+  flow = "undefined",
   uptime = "undefined",
+  pressure = "undefined",
   state = "undefined"
 }
 if type(resp) == "table" and type(resp.value) == "string" then
