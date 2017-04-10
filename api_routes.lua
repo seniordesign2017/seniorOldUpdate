@@ -40,7 +40,7 @@ if true then
   local data = {}
   if window == nil then window = 30 end
   -- Assumes temperature and humidity data device resources
-  local metrics = {"temperature", "humidity"}
+  local metrics = {"temperature", "pressure"}
   local tags = {identity = identifier}
   local out = Tsdb.query({
     metrics = metrics,
@@ -90,9 +90,10 @@ local resp = Keystore.get({key = "identifier_" .. data.device_sn})
 -- Make sure each device has the following keys stored
 local value = {
   temperature = "undefined",
-  humidity = "undefined",
+  pressure = "undefined",
   uptime = "undefined",
-  state = "undefined"
+  state = "undefined",
+  flow = "undefined"
 }
 if type(resp) == "table" and type(resp.value) == "string" then
   value = from_json(resp.value) -- Decode from JSON to Lua Table
