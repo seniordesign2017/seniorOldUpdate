@@ -2,6 +2,9 @@
   "default_page": "index.html",
   "file_dir": "assets",
   "custom_api": "api_routes.lua",
+  "modules": {
+    "auth": "modules/util.lua"
+  },
   "event_handler": {
     "device": {
       "datapoint": "service_handlers/product.lua"
