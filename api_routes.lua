@@ -105,3 +105,29 @@ value["pid"] = data.vendor or data.pid
 -- Write data into key/value data store
 Keystore.set({key = "identifier_" .. data.device_sn, value = to_json(value)})
 
+--#ENDPOINT GET /aliases
+-- Return a list of all device aliases
+response.code = 200
+local aliases = util.get_device_aliases()
+if aliases == nil then
+  response.code = 404
+  response.message = util.get_device_aliases()
+else
+  response.message = aliases
+end
+
+--#ENDPOINT GET /device/{sn}
+-- get details about a particular device
+local sn = tostring(request.parameters.sn)
+local res = util.kv_read(sn)
+if res == nil then
+    response.code = 404
+    response.message = {}
+else
+  response.code = 200
+  response.message = res
+end
+--#ENDPOINT GET /device
+-- Return a list of all devices
+response.code = 200
+response.message = util.get_all_devices()
