@@ -1,10 +1,12 @@
 $(function() {
 
 		//REPLACE DEVICE UNIQUE IDENTIFIER / SERIAL NUMBER HERE
-		var myDevice = '000001'; //default unique device identifier
-
+		var myDevice = 'B4:21:8A:F0:2E:CE'; //default unique device identifier
 		//REPLACE WITH FULL APP DOMAIN IF RUNNING LOCALLY, OTHEWISE LEAVE AS "/"
     var app_domain = '/';
+    
+    var deviceex = util.get_all_devices();
+    window.alert("deviceex");
 
 		var data = [];
 		var updateInterval = 1000; //milliseconds
@@ -90,7 +92,7 @@ $(function() {
 
               console.log(raw_data, j);
 
-              // reformat data for flot
+              // reformat data for float
               for (var i = raw_data.length - 1; i >= 0; i--) {
                 if (raw_data[i][j] != null)
                   data.unshift([raw_data[i][0],raw_data[i][j]])
@@ -189,4 +191,4 @@ $(function() {
 		fetchData();
 
 		$("#footer").prepend("Exosite Murano Example");
-	});
+});
