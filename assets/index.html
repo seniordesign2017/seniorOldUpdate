@@ -27,14 +27,16 @@
         <td><p>Device Identifer: </p> </td>
         <td><p><input id="specificdevice" type="text" value="" style="text-align: right; width:10em"></input><p></td>
       </tr>
-	  <tr>
-		<td><p>Sensor</p></td>
-		<td><select id="graphPick"onchange="changeGraph(this)">
-				<option value="all">all sensors</option>
-				<option value="temperature">Temperature</option>
-				<option value="humidity">Humidity</option>
-				<option value="flow">Flow</option>
-				<option value="pressure">Pressure</option>
+      <tr>
+	<td><p>Sensor</p></td>
+	<td><select id="graphPick">
+		<option value="all">all sensors</option>
+		<option value="temperature">Temperature</option>
+		<option value="humidity">Humidity</option>
+		<option value="flow">Flow</option>
+		<option value="pressure">Pressure</option>
+		</select></td>
+      </tr>
       <tr>
         <td><p>Time between updates:</p></td>
         <td><p><input id="updateInterval" type="text" value="" style="text-align: right; width:10em"></input> milliseconds [0 = stop]</p></td>
