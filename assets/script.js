@@ -98,9 +98,8 @@ $(function() {
 					if (data.length > 0) {
 						last_val = data[data.length-1]
 						// put data into data_to_plot
-						var disp_val = last_val.split(",");
 						data_to_plot.push({
-							label: friendly + ' - '+ disp_val[1] + ' ' +units,
+							label: friendly + ' - '+ last_val + ' ' +units,
 							data: data,
 							units: units
 						});
