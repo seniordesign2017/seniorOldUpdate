@@ -184,7 +184,7 @@ $(function() {
 	
 	$("#graphPick").val(graphPick).change(function () {
 		changeGraph(graphPick);
-	}
+	});
 
 	// Set up the control widget
 	// get update interval from html
