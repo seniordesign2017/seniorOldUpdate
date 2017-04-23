@@ -165,7 +165,7 @@ $(function() {
 	}
 	
 	
-	$("#graphPick").val().change(function () {
+	$("#graphPick").val(graphPick).change(function () {
 		selectedValue = $("#graphPick").val();
 		if (selectedValue == "temperature"){
 			graphType = "temper";
