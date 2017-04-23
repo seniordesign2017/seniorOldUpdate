@@ -7,6 +7,9 @@ $(function() {
 	var updateInterval = 1000; //milliseconds
 	var timeWindow = 10; //minutes
 	var red_color = '#6B0023';
+	var tempData =[];
+	var presData =[];
+	var flowData =[];
 
     var graph_options = {
         series: {
@@ -77,13 +80,23 @@ $(function() {
 					if (friendly == "temperature"){
 						units = "F";
 						friendly = "Temperature";
+						tempData.push(newdata.timeseries.values[j]);
+				
 					}else if (friendly == "humidity"){
 						units = "%";
 						friendly = "Humidity";
+						humiData.push(newdata.timeseries.values[j]);
+						
 					}else if (friendly == "flow"){
 						units = "Flow";
+						friendly = "Flow";
+						flowData.push(newdata.timeseries.values[j]);
+						
 					}else if(friendly == "pressure"){
 						units = "PSI";
+						friendly = "Pressure"
+						presData.push(newdata.timeseries.values[j]);
+						
 					}
 
 					console.log(raw_data, j);
