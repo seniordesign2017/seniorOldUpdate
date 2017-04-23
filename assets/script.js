@@ -164,7 +164,9 @@ $(function() {
 
 	}
 	
-	function changeGraph(selectedValue){
+	
+	$("#graphPick").val().change(function () {
+		selectedValue = $("#graphPick").val();
 		if (selectedValue == "temperature"){
 			graphType = "temper";
 			
@@ -180,10 +182,6 @@ $(function() {
 		}else if(selectedValue == "humidity"){
 			graphType = "humid"
 		}
-	}
-	
-	$("#graphPick").val(graphPick).change(function () {
-		changeGraph(graphPick);
 	});
 
 	// Set up the control widget
