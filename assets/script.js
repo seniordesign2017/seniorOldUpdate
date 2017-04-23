@@ -10,6 +10,7 @@ $(function() {
 	var tempData =[];
 	var presData =[];
 	var flowData =[];
+	var graphType = "all";
 
     var graph_options = {
         series: {
@@ -80,22 +81,22 @@ $(function() {
 					if (friendly == "temperature"){
 						units = "F";
 						friendly = "Temperature";
-						tempData.push(newdata.timeseries.values[j]);
+						tempData.push(newdata.timeseries.values);
 				
 					}else if (friendly == "humidity"){
 						units = "%";
 						friendly = "Humidity";
-						humiData.push(newdata.timeseries.values[j]);
+						humiData.push(newdata.timeseries.values);
 						
 					}else if (friendly == "flow"){
 						units = "Flow";
 						friendly = "Flow";
-						flowData.push(newdata.timeseries.values[j]);
+						flowData.push(newdata.timeseries.values);
 						
 					}else if(friendly == "pressure"){
 						units = "PSI";
 						friendly = "Pressure"
-						presData.push(newdata.timeseries.values[j]);
+						presData.push(newdata.timeseries.values);
 						
 					}
 
@@ -108,14 +109,17 @@ $(function() {
 					}
 
 					// only push if data returned
-					if (data.length > 0) {
-						last_val = data[data.length-1]
-						// put data into data_to_plot
-						data_to_plot.push({
-							label: friendly + ' - '+ last_val + ' ' +units,
-							data: data,
-							units: units
-						});
+					if(graphType == "all"||(graphType=="temper" && friendly == "Temperature")||(graphType=="press" && friendly == "Pressure")||(graphType == "flow"&& friendly == "Flow")){
+						
+						if (data.length > 0) {
+							last_val = data[data.length-1]
+							// put data into data_to_plot
+							data_to_plot.push({
+								label: friendly + ' - '+ last_val + ' ' +units,
+								data: data,
+								units: units
+							});
+						}
 					}
 				}
 				$("#placeholder").text('');
@@ -156,6 +160,24 @@ $(function() {
 			,timeout: 10000
         });
 
+	}
+	
+	function changeGraph(selectedValue){
+		if (selectedValue == "temperature"){
+			graphType = "temper";
+			
+		}else if(selectedValue == "all"){
+			graphType = "all";
+			
+		}else if(selectedValue == "pressure"){
+			graphType = "press";
+			
+		}else if(selectedValue == "flow"){
+			graphType = "flow";
+			
+		}else if(selectedValue == "humidity"){
+			graphType = "humid"
+		}
 	}
 
 
