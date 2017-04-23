@@ -16,18 +16,19 @@ $(function() {
             points: { show: true, radius: 0.7, fillColor: "#41C4DC" }
         },
 		legend: {
-			position: "nw",
+			position: "sw",
 			backgroundColor: "#111111",
 			backgroundOpacity: 0.8
 		},
         yaxis: {
-          min: 0,
-          max: 400
+			min: 0,
+			max: 400
         },
         xaxis: {
-          mode: "time",
-					timeformat: "%I:%M %p",
-					timezone:  "browser"
+			mode: "time",
+			timeformat: "%I:%M %p",
+			timezone:  "browser",
+			ticks: 10
         },
         colors: ["#2C9DB6","#FF921E","#FF5847","#FFC647", "#5D409C", "#BF427B","#D5E04D" ]
 	};
@@ -91,7 +92,7 @@ $(function() {
 						
 					}else if(friendly == "pressure"){
 						units = "PSI";
-						friendly = "Pressure"
+						friendly = "Pressure";
 						
 					}
 
