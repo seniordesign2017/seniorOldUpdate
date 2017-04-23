@@ -4,6 +4,7 @@ $(function() {
 	//REPLACE WITH FULL APP DOMAIN IF RUNNING LOCALLY, OTHEWISE LEAVE AS "/"
 	var app_domain = '/';
 	var data = [];
+	var graphPick="all";
 	var updateInterval = 1000; //milliseconds
 	var timeWindow = 10; //minutes
 	var red_color = '#6B0023';
@@ -43,6 +44,7 @@ $(function() {
 	$("#placeholder").text('Graph: Retrieving Data Now....');
 
     function fetchData() {
+		
 		console.log('fetching data from Murano');
         $("#appconsole").text('Fetching Data For '+myDevice+' From Server...');
 		$("#appconsole").css('color', '#555555');
@@ -179,7 +181,10 @@ $(function() {
 			graphType = "humid"
 		}
 	}
-
+	
+	$("#graphPick").val(graphPick).change(function () {
+		changeGraph(graphPick);
+	}
 
 	// Set up the control widget
 	// get update interval from html
