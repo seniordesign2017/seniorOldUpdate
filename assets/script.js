@@ -8,9 +8,6 @@ $(function() {
 	var updateInterval = 1000; //milliseconds
 	var timeWindow = 10; //minutes
 	var red_color = '#6B0023';
-	var tempData =[];
-	var presData =[];
-	var flowData =[];
 	var graphType = "all";
 
     var graph_options = {
@@ -23,10 +20,10 @@ $(function() {
 			backgroundColor: "#111111",
 			backgroundOpacity: 0.8
 		},
-        /*yaxis: {
+        yaxis: {
           min: 0,
-          max: 100
-        },*/
+          max: 400
+        },
         xaxis: {
           mode: "time",
 					timeformat: "%I:%M %p",
@@ -83,22 +80,18 @@ $(function() {
 					if (friendly == "temperature"){
 						units = "F";
 						friendly = "Temperature";
-						tempData.push(newdata.timeseries.values);
 				
 					}else if (friendly == "humidity"){
 						units = "%";
 						friendly = "Humidity";
-						humiData.push(newdata.timeseries.values);
 						
 					}else if (friendly == "flow"){
 						units = "Flow";
 						friendly = "Flow";
-						flowData.push(newdata.timeseries.values);
 						
 					}else if(friendly == "pressure"){
 						units = "PSI";
 						friendly = "Pressure"
-						presData.push(newdata.timeseries.values);
 						
 					}
 
@@ -117,7 +110,7 @@ $(function() {
 							last_val = data[data.length-1]
 							// put data into data_to_plot
 							data_to_plot.push({
-								label: friendly + ' - '+ last_val + ' ' +units,
+								label: friendly + ' - '+ last_val[1] + ' ' +units,
 								data: data,
 								units: units
 							});
