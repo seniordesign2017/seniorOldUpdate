@@ -1,4 +1,4 @@
-$(function() {
+$$(function() {
 	//REPLACE DEVICE UNIQUE IDENTIFIER / SERIAL NUMBER HERE
 	var myDevice = 'B4:21:8A:F0:2E:CE'; //default unique device identifier  B4:21:8A:F0:36:58
 	//REPLACE WITH FULL APP DOMAIN IF RUNNING LOCALLY, OTHEWISE LEAVE AS "/"
@@ -100,7 +100,7 @@ $(function() {
 						data.unshift([raw_data[i][0],raw_data[i][j]])
 					}
 					
-					var currentArray = data[data.length-1];
+					//var currentArray = data[data.length-1];
 					//var currentval = currentArray[1];
 					//changeCurrentValue(currentVal, friendly);
 					
@@ -116,6 +116,8 @@ $(function() {
 								units: units
 							});
 							
+                            changeCurrentValue(last_val[1],friendly);
+                            
 						}
 					}
 				}
