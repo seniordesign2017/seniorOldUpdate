@@ -99,7 +99,11 @@ $(function() {
 						if (raw_data[i][j] != null)
 						data.unshift([raw_data[i][0],raw_data[i][j]])
 					}
-
+					
+					var currentArray = data[data.length-1];
+					var currentval = currentArray[1];
+					changeCurrentValue(currentVal, friendly);
+					
 					// only push if data returned
 					if(graphType == "all"||(graphType=="temper" && friendly == "Temperature")||(graphType=="press" && friendly == "Pressure")||(graphType == "flow"&& friendly == "Flow")){
 						
@@ -111,6 +115,7 @@ $(function() {
 								data: data,
 								units: units
 							});
+							
 						}
 					}
 				}
@@ -154,6 +159,18 @@ $(function() {
 
 	}
 	
+	function changeCurrentValue(valueChange, valueColumn){
+		
+		if (valueColumn == "Temperature"){
+			$("#currTemp").text(valueChange);
+			
+		}else if(valueColumn == "Pressure"){
+			$("#currPres").text(valueChange);
+			
+		}else if(valueColumn == "Flow"){
+			$("#currFlow").text(valueChange);
+		}	
+	}
 	
 	$("#graphPick").val(graphPick).change(function () {
 		selectedValue = $("#graphPick").val();
