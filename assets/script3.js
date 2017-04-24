@@ -1,4 +1,4 @@
-$$(function() {
+$(function() {
 	//REPLACE DEVICE UNIQUE IDENTIFIER / SERIAL NUMBER HERE
 	var myDevice = 'B4:21:8A:F0:2E:CE'; //default unique device identifier  B4:21:8A:F0:36:58
 	//REPLACE WITH FULL APP DOMAIN IF RUNNING LOCALLY, OTHEWISE LEAVE AS "/"
