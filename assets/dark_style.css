@@ -11,9 +11,19 @@ body {
 a {	color: #069; }
 a:hover { color: #28b; }
 
+div{
+	align:left;
+}
+
 section{
+	padding: 5px
 	background-color: #1EACFF;
 	width:30%;
+}
+
+td{
+	border: 1px solid white;
+	border-collapse:collapse;
 }
 
 h2 {
@@ -91,8 +101,8 @@ input[type=checkbox] {
 
 .demo-container {
 	box-sizing: border-box;
-	width: 500px;
-	height: 300px;
+	width: 850px;
+	height: 450px;
 	padding: 20px 15px 15px 15px;
 	margin: 15px auto 30px auto;
 	border: 1px solid #222222;
