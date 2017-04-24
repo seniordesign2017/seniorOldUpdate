@@ -82,14 +82,6 @@ $(function() {
 						units = "F";
 						friendly = "Temperature";
 				
-					}else if (friendly == "flow"){
-						units = "Flow";
-						friendly = "Flow";
-						
-					}else if(friendly == "pressure"){
-						units = "PSI";
-						friendly = "Pressure";
-						
 					}
 
 					console.log(raw_data, j);
