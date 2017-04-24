@@ -116,6 +116,7 @@ $(function() {
 								units: units
 							});
                             changeCurrentValue(last_val[1], friendly);
+                            changeCurrentVal(last_val[1], friendly);
 					}
 				}
 				$("#placeholder").text('');
@@ -168,6 +169,19 @@ $(function() {
 			
 		}else if(valueColumn == "Flow"){
 			$("#currFlow").text(valueChange);
+		}	
+	}
+	
+    function changeCurrentVal(valueChange, valueColumn){
+		
+		if (valueColumn == "Temperature"){
+			$("#currTempM").text(valueChange);
+			
+		}else if(valueColumn == "Pressure"){
+			$("#currPresM").text(valueChange);
+			
+		}else if(valueColumn == "Flow"){
+			$("#currFlowM").text(valueChange);
 		}	
 	}
 	
