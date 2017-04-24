@@ -1,6 +1,6 @@
 $(function() {
 	//REPLACE DEVICE UNIQUE IDENTIFIER / SERIAL NUMBER HERE
-	var myDevice = 'B4:21:8A:F0:2E:CE'; //default unique device identifier
+	var myDevice = 'B4:21:8A:F0:2E:CE'; //default unique device identifier  B4:21:8A:F0:36:58
 	//REPLACE WITH FULL APP DOMAIN IF RUNNING LOCALLY, OTHEWISE LEAVE AS "/"
 	var app_domain = '/';
 	var data = [];
@@ -41,19 +41,6 @@ $(function() {
 	$("#appconsole").css('color', '#555555');
 	$("#placeholder").text('Graph: Retrieving Data Now....');
 
-	function changeCurrentValue(valueChange, valueColumn){
-		
-		if (valueColumn == "Temperature"){
-			$("#currTemp").text(valueChange);
-			
-		}else if(valueColumn == "Pressure"){
-			$("#currPres").text(valueChange);
-			
-		}else if(valueColumn == "Flow"){
-			$("#currFlow").text(valueChange);
-		}	
-	}
-	
     function fetchData() {
 		
 		console.log('fetching data from Murano');
@@ -114,8 +101,8 @@ $(function() {
 					}
 					
 					var currentArray = data[data.length-1];
-					//var currentval = currentArray[1];
-					//changeCurrentValue(currentVal, friendly);
+					var currentval = currentArray[1];
+					changeCurrentValue(currentVal, friendly);
 					
 					// only push if data returned
 					if(graphType == "all"||(graphType=="temper" && friendly == "Temperature")||(graphType=="press" && friendly == "Pressure")||(graphType == "flow"&& friendly == "Flow")){
@@ -172,7 +159,18 @@ $(function() {
 
 	}
 	
-	
+	function changeCurrentValue(valueChange, valueColumn){
+		
+		if (valueColumn == "Temperature"){
+			$("#currTemp").text(valueChange);
+			
+		}else if(valueColumn == "Pressure"){
+			$("#currPres").text(valueChange);
+			
+		}else if(valueColumn == "Flow"){
+			$("#currFlow").text(valueChange);
+		}	
+	}
 	
 	$("#graphPick").val(graphPick).change(function () {
 		selectedValue = $("#graphPick").val();
