@@ -1,6 +1,4 @@
-<html>
-<head>
-  <!-- <link rel="stylesheet" href="style.css"> -->
+ <!-- <link rel="stylesheet" href="style.css"> -->
   <link rel="stylesheet" href="dark_style.css">
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.js"></script>
@@ -28,7 +26,7 @@
 
 		<p></p>
 		<table width="30%">
-		  <col width="200px" />
+		  <col width="500px" />
 		  <tr>
 			<td><p>Device Identifer: </p> </td>
 			<td><p><input id="specificdevice" type="text" value="" style="text-align: right; width:10em"></input><p></td>
@@ -37,7 +35,7 @@
 			<td><p>Sensor: </p></td>
 			<td><select id="graphPick">
 					<option value="all">all sensors</option>
-					<option value="temperature">Temperature</option>
+					<option selected="selected" value="temperature">Temperature</option>
 					<option value="flow">Flow</option>
 					<option value="pressure">Pressure</option>
 			</select></td>
@@ -93,6 +91,8 @@
 			<td><select id="graphPickTemp">
 				<option value="all">all sensors</option>
 				<option value="temperature">Temperature</option>
+				<option selected="selected" value="flow">Flow</option>
+				<option value="pressure">Pressure</option>
 			</select></td>
 		  <tr>
 			<td><p>Time between updates:</p></td>
@@ -118,9 +118,9 @@
 				<th>Pressure</th>
 			</tr>
 			<tr>
-				<td id="currTemp">N/A</td>
-				<td id="currFlow">N/A</td>
-				<td id="currPres">N/A</td>
+				<td id="currTempTemp">N/A</td>
+				<td id="currFlowTemp">N/A</td>
+				<td id="currPresTemp">N/A</td>
 			</tr>
 		</table>
 	  </div>
@@ -128,14 +128,14 @@
 	<td>
 	<!-- Graph 3 -->
 	 <div class="inline">
-		<h3 >Device Identifier: <span id="currentdeviceTemp"></span></h3>
+		<h3 >Device Identifier: <span id="currentdevice3"></span></h3>
 		<section class="demo-container">
 		  <div id="placeholder3" class="demo-placeholder"></div>
 		</section>
 
 		<p></p>
 		<table width="30%">
-		  <col width="200px" />
+		  <col width="50%" />
 		  <tr>
 			<td><p>Device Identifer: </p> </td>
 			<td><p><input id="specificdevice3" type="text" value="" style="text-align: right; width:10em"></input><p></td>
@@ -145,6 +145,8 @@
 			<td><select id="graphPick3">
 					<option value="all">all sensors</option>
 					<option value="temperature">Temperature</option>
+					<option selected="selected" value="flow">Flow</option>
+					<option value="pressure">Pressure</option>
 			</select></td>
 		  <tr>
 			<td><p>Time between updates:</p></td>
@@ -170,9 +172,9 @@
 				<th>Pressure</th>
 			</tr>
 			<tr>
-				<td id="currTempTemp">N/A</td>
-				<td id="currFlowTemp">N/A</td>
-				<td id="currPresTemp">N/A</td>
+				<td id="currTemp3">N/A</td>
+				<td id="currFlow3">N/A</td>
+				<td id="currPres3">N/A</td>
 			</tr>
 		</table>
 	  </div>
@@ -186,9 +188,9 @@
 				<th>Pressure</th>
 			</tr>
 			<tr>
-				<td id="currTemp3">N/A</td>
-				<td id="currFlow3">N/A</td>
-				<td id="currPres3">N/A</td>
+				<td id="currTempM">N/A</td>
+				<td id="currFlowM">N/A</td>
+				<td id="currPresM">N/A</td>
 			</tr>
 		</table>
 	</div>
