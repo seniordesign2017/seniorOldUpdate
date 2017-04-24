@@ -56,9 +56,9 @@
   </div>
 <!-- Graph 2 -->
   <div class="inline">
-    <h3 >Device Identifier: <span id="currentdevice"></span></h3>
+    <h3 >Device Identifier: <span id="currentdeviceTemp"></span></h3>
     <div class="demo-container">
-      <div id="placeholder" class="demo-placeholder"></div>
+      <div id="placeholderTemp" class="demo-placeholder"></div>
     </div>
 
     <p></p>
@@ -66,31 +66,29 @@
       <col width="200px" />
       <tr>
         <td><p>Device Identifer: </p> </td>
-        <td><p><input id="specificdevice" type="text" value="" style="text-align: right; width:10em"></input><p></td>
+        <td><p><input id="specificdeviceTemp" type="text" value="" style="text-align: right; width:10em"></input><p></td>
       </tr>
 	  <tr>
 		<td><p>Sensor: </p></td>
-		<td><select id="graphPick">
+		<td><select id="graphPickTemp">
 				<option value="all">all sensors</option>
 				<option value="temperature">Temperature</option>
-				<option value="flow">Flow</option>
-				<option value="pressure">Pressure</option>
 		</select></td>
       <tr>
         <td><p>Time between updates:</p></td>
-        <td><p><input id="updateInterval" type="text" value="" style="text-align: right; width:10em"></input> milliseconds [0 = stop]</p></td>
+        <td><p><input id="updateIntervalTemp" type="text" value="" style="text-align: right; width:10em"></input> milliseconds [0 = stop]</p></td>
       </tr>
       <tr>
         <td><p>Time Window:</p></td>
-        <td><p><input id="timeWindow" type="text" value="" style="text-align: right; width:10em"></input> minutes</p></td>
+        <td><p><input id="timeWindowTemp" type="text" value="" style="text-align: right; width:10em"></input> minutes</p></td>
       </tr>
       <tr>
         <td><p>Application Status: </p></td>
-        <td><span id="appstatus"> </span></td>
+        <td><span id="appstatusTemp"> </span></td>
       </tr>
       <tr>
         <td><p>Application Console:</td>
-          <td> <span id="appconsole"> </span></p></td>
+          <td> <span id="appconsoleTemp"> </span></p></td>
         </tr>
     </table>
   </div>
