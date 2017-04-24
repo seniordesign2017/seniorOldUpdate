@@ -101,8 +101,8 @@ $(function() {
 					}
 					
 					var currentArray = data[data.length-1];
-					var currentval = currentArray[1];
-					changeCurrentValue(currentVal, friendly);
+					//var currentval = currentArray[1];
+					//changeCurrentValue(currentVal, friendly);
 					
 					// only push if data returned
 					if(graphType == "all"||(graphType=="temper" && friendly == "Temperature")||(graphType=="press" && friendly == "Pressure")||(graphType == "flow"&& friendly == "Flow")){
