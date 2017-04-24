@@ -100,10 +100,6 @@ $(function() {
 						data.unshift([raw_data[i][0],raw_data[i][j]])
 					}
 					
-					//var currentArray = data[data.length-1];
-					//var currentval = currentArray[1];
-					//changeCurrentValue(currentVal, friendly);
-					
 					// only push if data returned
 					if(graphType == "all"||(graphType=="temper" && friendly == "Temperature")||(graphType=="press" && friendly == "Pressure")||(graphType == "flow"&& friendly == "Flow")){
 						
@@ -114,9 +110,11 @@ $(function() {
 								label: friendly + ' - '+ last_val[1] + ' ' +units,
 								data: data,
 								units: units
-							});
-                            changeCurrentValue(last_val[1], friendly);
-                            changeCurrentVal(last_val[1], friendly);
+						});
+							
+                            				changeCurrentValue(last_val[1],friendly);
+                            
+					  }
 					}
 				}
 				$("#placeholder").text('');
@@ -163,24 +161,14 @@ $(function() {
 		
 		if (valueColumn == "Temperature"){
 			$("#currTemp").text(valueChange);
-			
-		}else if(valueColumn == "Pressure"){
-			$("#currPres").text(valueChange);
-			
-		}else if(valueColumn == "Flow"){
-			$("#currFlow").text(valueChange);
-		}	
-	}
-	
-    function changeCurrentVal(valueChange, valueColumn){
-		
-		if (valueColumn == "Temperature"){
 			$("#currTempM").text(valueChange);
 			
 		}else if(valueColumn == "Pressure"){
+			$("#currPres").text(valueChange);
 			$("#currPresM").text(valueChange);
 			
 		}else if(valueColumn == "Flow"){
+			$("#currFlow").text(valueChange);
 			$("#currFlowM").text(valueChange);
 		}	
 	}
