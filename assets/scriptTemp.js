@@ -93,7 +93,7 @@ $(function() {
 					}
 
 					// only push if data returned
-					if(graphType == "all"||(graphType=="temper" && friendly == "Temperature")||(graphType=="press" && friendly == "Pressure")||(graphType == "flow"&& friendly == "Flow")){
+					if(graphType == "all"||(graphType=="temper" && friendly == "Temperature")){
 						
 						if (data.length > 0) {
 							last_val = data[data.length-1]
@@ -168,7 +168,7 @@ $(function() {
 
 	// Set up the control widget
 	// get update interval from html
-	$("#updateInterval").val(updateInterval).change(function () {
+	$("#updateIntervalTemp").val(updateInterval).change(function () {
 		var v = $(this).val();
 		if (v && !isNaN(+v)) {
 			if(updateInterval == 0)
