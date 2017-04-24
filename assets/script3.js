@@ -33,26 +33,26 @@ $(function() {
         colors: ["#2C9DB6","#FF921E","#FF5847","#FFC647", "#5D409C", "#BF427B","#D5E04D" ]
 	};
 
-	$("#specificdevice").text(myDevice);
-	$("#currentdevice").text(myDevice);
-	$("#appstatus").text('Running');
-	$("#appstatus").css('color', '555555');
-	$("#appconsole").text('starting...');
-	$("#appconsole").css('color', '#555555');
-	$("#placeholder").text('Graph: Retrieving Data Now....');
+	$("#specificdevice3").text(myDevice);
+	$("#currentdevice3").text(myDevice);
+	$("#appstatus3").text('Running');
+	$("#appstatus3").css('color', '555555');
+	$("#appconsole3").text('starting...');
+	$("#appconsole3").css('color', '#555555');
+	$("#placeholder3").text('Graph: Retrieving Data Now....');
 
     function fetchData() {
 		
 		console.log('fetching data from Murano');
-        $("#appconsole").text('Fetching Data For '+myDevice+' From Server...');
-		$("#appconsole").css('color', '#555555');
+        $("#appconsole3").text('Fetching Data For '+myDevice+' From Server...');
+		$("#appconsole3").css('color', '#555555');
 
         // recent data is grabbed as newdata
         function onDataReceived(newdata) {
-			$("#appstatus").text('Running');
-			$("#appstatus").css('color', '555555');
-			$("#appconsole").text('Processing Data');
-			$("#appconsole").css('color', '#555555');
+			$("#appstatus3").text('Running');
+			$("#appstatus3").css('color', '555555');
+			$("#appconsole3").text('Processing Data');
+			$("#appconsole3").css('color', '#555555');
 			var data_to_plot = [];
 			//Load all the data in one pass; if we only got partial
 			// data we could merge it with what we already have.
@@ -64,8 +64,8 @@ $(function() {
             //newdata has no data
             //Database error
             console.log('no data in selected window, check device')
-            $("#appconsole").text('No data found in window for this device');
-            $("#placeholder").text('Graph: Data Not Found for: '+myDevice);
+            $("#appconsole3").text('No data found in window for this device');
+            $("#placeholder3").text('Graph: Data Not Found for: '+myDevice);
 			}else{
 				//newdata has data
 				console.log('valid data return for: '+myDevice);
@@ -119,10 +119,10 @@ $(function() {
 						}
 					}
 				}
-				$("#placeholder").text('');
-				$.plot("#placeholder", data_to_plot, graph_options);
-				$("#appconsole").text('Data Plotted');
-				$("#appconsole").css('color', '#555555');
+				$("#placeholder3").text('');
+				$.plot("#placeholder3", data_to_plot, graph_options);
+				$("#appconsole3").text('Data Plotted');
+				$("#appconsole3").css('color', '#555555');
 			}
 			
 			if (updateInterval != 0){
