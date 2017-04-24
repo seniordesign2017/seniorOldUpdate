@@ -111,6 +111,9 @@ $(function() {
 								data: data,
 								units: units
 							});
+                            
+                            changeCurrentValue(last_val[1],friendly);
+                            
 						}
 					}
 				}
@@ -154,6 +157,18 @@ $(function() {
 
 	}
 	
+		function changeCurrentValue(valueChange, valueColumn){
+		
+		if (valueColumn == "Temperature"){
+			$("#currTempTemp").text(valueChange);
+			
+		}else if(valueColumn == "Pressure"){
+			$("#currPresTemp").text(valueChange);
+			
+		}else if(valueColumn == "Flow"){
+			$("#currFlowTemp").text(valueChange);
+		}	
+	}
 	
 	$("#graphPickTemp").val(graphPick).change(function () {
 		selectedValue = $("#graphPickTemp").val();
