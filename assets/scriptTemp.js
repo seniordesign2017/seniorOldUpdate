@@ -33,26 +33,26 @@ $(function() {
         colors: ["#2C9DB6","#FF921E","#FF5847","#FFC647", "#5D409C", "#BF427B","#D5E04D" ]
 	};
 
-	$("#specificdevice").text(myDevice);
-	$("#currentdevice").text(myDevice);
-	$("#appstatus").text('Running');
-	$("#appstatus").css('color', '555555');
-	$("#appconsole").text('starting...');
-	$("#appconsole").css('color', '#555555');
-	$("#placeholder").text('Graph: Retrieving Data Now....');
+	$("#specificdeviceTemp").text(myDevice);
+	$("#currentdeviceTemp").text(myDevice);
+	$("#appstatusTemp").text('Running');
+	$("#appstatusTemp").css('color', '555555');
+	$("#appconsoleTemp").text('starting...');
+	$("#appconsoleTemp").css('color', '#555555');
+	$("#placeholderTemp").text('Graph: Retrieving Data Now....');
 
     function fetchData() {
 		
 		console.log('fetching data from Murano');
-        $("#appconsole").text('Fetching Data For '+myDevice+' From Server...');
-		$("#appconsole").css('color', '#555555');
+        $("#appconsoleTemp").text('Fetching Data For '+myDevice+' From Server...');
+		$("#appconsoleTemp").css('color', '#555555');
 
         // recent data is grabbed as newdata
         function onDataReceived(newdata) {
-			$("#appstatus").text('Running');
-			$("#appstatus").css('color', '555555');
-			$("#appconsole").text('Processing Data');
-			$("#appconsole").css('color', '#555555');
+			$("#appstatusTemp").text('Running');
+			$("#appstatusTemp").css('color', '555555');
+			$("#appconsoleTemp").text('Processing Data');
+			$("#appconsoleTemp").css('color', '#555555');
 			var data_to_plot = [];
 			//Load all the data in one pass; if we only got partial
 			// data we could merge it with what we already have.
@@ -64,8 +64,8 @@ $(function() {
             //newdata has no data
             //Database error
             console.log('no data in selected window, check device')
-            $("#appconsole").text('No data found in window for this device');
-            $("#placeholder").text('Graph: Data Not Found for: '+myDevice);
+            $("#appconsoleTemp").text('No data found in window for this device');
+            $("#placeholderTemp").text('Graph: Data Not Found for: '+myDevice);
 			}else{
 				//newdata has data
 				console.log('valid data return for: '+myDevice);
@@ -114,10 +114,10 @@ $(function() {
 						}
 					}
 				}
-				$("#placeholder").text('');
-				$.plot("#placeholder", data_to_plot, graph_options);
-				$("#appconsole").text('Data Plotted');
-				$("#appconsole").css('color', '#555555');
+				$("#placeholderTemp").text('');
+				$.plot("#placeholderTemp", data_to_plot, graph_options);
+				$("#appconsoleTemp").text('Data Plotted');
+				$("#appconsoleTemp").css('color', '#555555');
 			}
 			
 			if (updateInterval != 0){
@@ -127,9 +127,9 @@ $(function() {
 
         function onError( jqXHR, textStatus, errorThrown) {
 			console.log('error: ' + textStatus + ',' + errorThrown);
-			$("#appconsole").text('No Server Response');
-			$("#appstatus").text('Server Offline');
-			$("#appstatus").css('color', red_color);
+			$("#appconsoleTemp").text('No Server Response');
+			$("#appstatusTemp").text('Server Offline');
+			$("#appstatusTemp").css('color', red_color);
 			if (updateInterval != 0){
 				setTimeout(fetchData, updateInterval+3000);
 			}
@@ -145,8 +145,8 @@ $(function() {
 			statusCode: {
 				504: function() {
 					console.log( "server not responding" );
-					$("#appstatus").text('Server Not Responding 504');
-					$("#appstatus").css('color', red_color);
+					$("#appstatusTemp").text('Server Not Responding 504');
+					$("#appstatusTemp").css('color', red_color);
 				}
 			}
 			,timeout: 10000
@@ -155,8 +155,8 @@ $(function() {
 	}
 	
 	
-	$("#graphPick").val(graphPick).change(function () {
-		selectedValue = $("#graphPick").val();
+	$("#graphPickTemp").val(graphPick).change(function () {
+		selectedValue = $("#graphPickTemp").val();
 		if (selectedValue == "temperature"){
 			graphType = "temper";
 			
@@ -190,7 +190,7 @@ $(function() {
 		}
 	});
 	//get timewindow from html
-	$("#timeWindow").val(timeWindow).change(function () {
+	$("#timeWindowTemp").val(timeWindow).change(function () {
 		var v = $(this).val();
 		if (v && !isNaN(+v)) {
 			timeWindow = +v;
@@ -203,18 +203,17 @@ $(function() {
 		}
 	});
 	//change specific device to current device
-	$("#specificdevice").val(myDevice).change(function () {
+	$("#specificdeviceTemp").val(myDevice).change(function () {
 		var v = $(this).val();
 		if (v) {
 			myDevice = v;
 			console.log('new device identity:' + myDevice);
 			$(this).val("" + myDevice);
-			$("#currentdevice").text(myDevice);
-			$("#placeholder").text('Graph: Retrieving New Device Data Now....');
+			$("#currentdeviceTemp").text(myDevice);
+			$("#placeholderTemp").text('Graph: Retrieving New Device Data Now....');
 		}
 	});
 
 	fetchData();
 
-	$("#footer").prepend("Exosite Murano Example");
 });
