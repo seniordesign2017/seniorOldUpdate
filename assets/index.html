@@ -6,7 +6,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.time.js"></script>
   <script src="script.js"></script>
-<script src="scriptTemp.js"></script>
+  <script src="scriptTemp.js"></script>
+  <script src="script3.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet">
 </head>
 <body>
@@ -15,6 +16,9 @@
 		<h2>Parker Hannafin IoT Device Data</h2>
 	</div>
 	<div>
+	<table id="mainTable">
+	
+	<td>
 	<!-- Graph 1 -->
 	  <div class="inline">
 		<h3 >Device Identifier: <span id="currentdevice"></span></h3>
@@ -54,20 +58,22 @@
 			  <td> <span id="appconsole"> </span></p></td>
 			</tr>
 		</table>
-		<table style="border:1px solid white;border-spacing:5px;">
+				<table style="border:1px solid white;border-spacing:5px;">
 			<tr>
 				<th>Temperature</th>
 				<th>Flow</th>
 				<th>Pressure</th>
 			</tr>
 			<tr>
-				<td id="currTemp"></td>
-				<td id="currFlow"></td>
-				<td id="currPres"></td>
+				<td id="currTemp">N/A</td>
+				<td id="currFlow">N/A</td>
+				<td id="currPres">N/A</td>
 			</tr>
 		</table>
 		
 	  </div>
+	</td>
+	<td>
 	<!-- Graph 2 -->
 	<div class="inline">
 		<h3 >Device Identifier: <span id="currentdeviceTemp"></span></h3>
@@ -112,12 +118,14 @@
 				<th>Pressure</th>
 			</tr>
 			<tr>
-				<td id="currTemp"></td>
-				<td id="currFlow"></td>
-				<td id="currPres"></td>
+				<td id="currTemp">N/A</td>
+				<td id="currFlow">N/A</td>
+				<td id="currPres">N/A</td>
 			</tr>
 		</table>
 	  </div>
+	</td>
+	<td>
 	<!-- Graph 3 -->
 	 <div class="inline">
 		<h3 >Device Identifier: <span id="currentdeviceTemp"></span></h3>
@@ -162,13 +170,14 @@
 				<th>Pressure</th>
 			</tr>
 			<tr>
-				<td id="currTemp"></td>
-				<td id="currFlow"></td>
-				<td id="currPres"></td>
+				<td id="currTempTemp">N/A</td>
+				<td id="currFlowTemp">N/A</td>
+				<td id="currPresTemp">N/A</td>
 			</tr>
 		</table>
 	  </div>
 	</div>
+	</td>
 	<div>
 		<table style="border:1px solid white;border-spacing:5px;">
 			<tr>
@@ -177,10 +186,11 @@
 				<th>Pressure</th>
 			</tr>
 			<tr>
-				<td id="currTemp"></td>
-				<td id="currFlow"></td>
-				<td id="currPres"></td>
+				<td id="currTemp3">N/A</td>
+				<td id="currFlow3">N/A</td>
+				<td id="currPres3">N/A</td>
 			</tr>
 		</table>
 	</div>
 </body>
+</html>
