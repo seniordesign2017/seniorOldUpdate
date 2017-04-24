@@ -8,7 +8,7 @@ $(function() {
 	var updateInterval = 1000; //milliseconds
 	var timeWindow = 10; //minutes
 	var red_color = '#6B0023';
-	var graphType = "temper";
+	var graphType = "flow";
 
     var graph_options = {
         series: {
@@ -93,7 +93,7 @@ $(function() {
 					}
 
 					// only push if data returned
-					if(graphType == "all"||(graphType=="temper" && friendly == "Temperature")){
+					if(graphType == "all"||(graphType=="temper" && friendly == "Temperature")||(graphType=="press" && friendly == "Pressure")||(graphType == "flow"&& friendly == "Flow")){
 						
 						if (data.length > 0) {
 							last_val = data[data.length-1]
