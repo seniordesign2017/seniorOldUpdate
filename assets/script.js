@@ -100,7 +100,7 @@ $(function() {
 						data.unshift([raw_data[i][0],raw_data[i][j]])
 					}
 					
-					var currentArray = data[data.length-1];
+					//var currentArray = data[data.length-1];
 					//var currentval = currentArray[1];
 					//changeCurrentValue(currentVal, friendly);
 					
@@ -115,8 +115,7 @@ $(function() {
 								data: data,
 								units: units
 							});
-							
-						}
+                            changeCurrentValue(last_val[1], friendly);
 					}
 				}
 				$("#placeholder").text('');
