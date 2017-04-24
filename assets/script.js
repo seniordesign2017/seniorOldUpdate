@@ -82,10 +82,6 @@ $(function() {
 						units = "F";
 						friendly = "Temperature";
 				
-					}else if (friendly == "humidity"){
-						units = "%";
-						friendly = "Humidity";
-						
 					}else if (friendly == "flow"){
 						units = "Flow";
 						friendly = "Flow";
