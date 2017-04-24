@@ -2,11 +2,17 @@
 resources:
 - alias: state
   format: string
-- alias: temperature
+- alias: pumpTemperature
   format: integer
 - alias: flow
   format: integer
 - alias: pressure
+  format: integer
+- alias: pressure2
+  format: integer
+- alias: humidity
+  format: integer
+- alias: current
   format: integer
 - alias: uptime
   format: integer
