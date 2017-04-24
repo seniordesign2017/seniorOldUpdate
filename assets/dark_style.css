@@ -74,6 +74,12 @@ input[type=checkbox] {
 	margin: 0 auto;
 	padding: 10px;
 }
+#topleft{
+	position: absolute;
+    left: 40px;
+    border: 3px solid #73AD21;
+    padding: 10px;
+}
 #graphContent {
 	width: 500px;
 	margin: 0 auto;
