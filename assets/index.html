@@ -11,102 +11,176 @@
 </head>
 <body>
 
-  <div id="header">
-    <h2>Parker Hannafin IoT Device Data</h2>
-  </div>
-<div>
-<!-- Graph 1 -->
-  <div class="inline">
-    <h3 >Device Identifier: <span id="currentdevice"></span></h3>
-    <div class="demo-container">
-      <div id="placeholder" class="demo-placeholder"></div>
-    </div>
+	<div id="header">
+		<h2>Parker Hannafin IoT Device Data</h2>
+	</div>
+	<div>
+	<!-- Graph 1 -->
+	  <div class="inline">
+		<h3 >Device Identifier: <span id="currentdevice"></span></h3>
+		<section class="demo-container">
+		  <div id="placeholder" class="demo-placeholder"></div>
+		</section>
 
-    <p></p>
-    <table width="30%">
-      <col width="200px" />
-      <tr>
-        <td><p>Device Identifer: </p> </td>
-        <td><p><input id="specificdevice" type="text" value="" style="text-align: right; width:10em"></input><p></td>
-      </tr>
-	  <tr>
-		<td><p>Sensor: </p></td>
-		<td><select id="graphPick">
+		<p></p>
+		<table width="30%">
+		  <col width="200px" />
+		  <tr>
+			<td><p>Device Identifer: </p> </td>
+			<td><p><input id="specificdevice" type="text" value="" style="text-align: right; width:10em"></input><p></td>
+		  </tr>
+		  <tr>
+			<td><p>Sensor: </p></td>
+			<td><select id="graphPick">
+					<option value="all">all sensors</option>
+					<option value="temperature">Temperature</option>
+					<option value="flow">Flow</option>
+					<option value="pressure">Pressure</option>
+			</select></td>
+		  <tr>
+			<td><p>Time between updates:</p></td>
+			<td><p><input id="updateInterval" type="text" value="" style="text-align: right; width:10em"></input> milliseconds [0 = stop]</p></td>
+		  </tr>
+		  <tr>
+			<td><p>Time Window:</p></td>
+			<td><p><input id="timeWindow" type="text" value="" style="text-align: right; width:10em"></input> minutes</p></td>
+		  </tr>
+		  <tr>
+			<td><p>Application Status: </p></td>
+			<td><span id="appstatus"> </span></td>
+		  </tr>
+		  <tr>
+			<td><p>Application Console:</td>
+			  <td> <span id="appconsole"> </span></p></td>
+			</tr>
+		</table>
+		<table style="border:1px solid white;border-spacing:5px;">
+			<tr>
+				<th>Temperature</th>
+				<th>Flow</th>
+				<th>Pressure</th>
+			</tr>
+			<tr>
+				<td id="currTemp"></td>
+				<td id="currFlow"></td>
+				<td id="currPres"></td>
+			</tr>
+		</table>
+		
+	  </div>
+	<!-- Graph 2 -->
+	<div class="inline">
+		<h3 >Device Identifier: <span id="currentdeviceTemp"></span></h3>
+		<section class="demo-container">
+			<div id="placeholderTemp" class="demo-placeholder"></div>
+		</section>
+
+		<p></p>
+		<table width="30%">
+		  <col width="200px" />
+		  <tr>
+			<td><p>Device Identifer: </p> </td>
+			<td><p><input id="specificdeviceTemp" type="text" value="" style="text-align: right; width:10em"></input><p></td>
+		  </tr>
+		  <tr>
+			<td><p>Sensor: </p></td>
+			<td><select id="graphPickTemp">
 				<option value="all">all sensors</option>
 				<option value="temperature">Temperature</option>
-				<option value="flow">Flow</option>
-				<option value="pressure">Pressure</option>
-		</select></td>
-      <tr>
-        <td><p>Time between updates:</p></td>
-        <td><p><input id="updateInterval" type="text" value="" style="text-align: right; width:10em"></input> milliseconds [0 = stop]</p></td>
-      </tr>
-      <tr>
-        <td><p>Time Window:</p></td>
-        <td><p><input id="timeWindow" type="text" value="" style="text-align: right; width:10em"></input> minutes</p></td>
-      </tr>
-      <tr>
-        <td><p>Application Status: </p></td>
-        <td><span id="appstatus"> </span></td>
-      </tr>
-      <tr>
-        <td><p>Application Console:</td>
-          <td> <span id="appconsole"> </span></p></td>
-        </tr>
-    </table>
-  </div>
-<!-- Graph 2 -->
-  <div class="inline">
-    <h3 >Device Identifier: <span id="currentdeviceTemp"></span></h3>
-    <div class="demo-container">
-      <div id="placeholderTemp" class="demo-placeholder"></div>
-    </div>
+			</select></td>
+		  <tr>
+			<td><p>Time between updates:</p></td>
+			<td><p><input id="updateIntervalTemp" type="text" value="" style="text-align: right; width:10em"></input> milliseconds [0 = stop]</p></td>
+		  </tr>
+		  <tr>
+			<td><p>Time Window:</p></td>
+			<td><p><input id="timeWindowTemp" type="text" value="" style="text-align: right; width:10em"></input> minutes</p></td>
+		  </tr>
+		  <tr>
+			<td><p>Application Status: </p></td>
+			<td><span id="appstatusTemp"> </span></td>
+		  </tr>
+		  <tr>
+			<td><p>Application Console:</td>
+			  <td> <span id="appconsoleTemp"> </span></p></td>
+			</tr>
+		</table>
+		<table style="border:1px solid white;border-spacing:5px;">
+			<tr>
+				<th>Temperature</th>
+				<th>Flow</th>
+				<th>Pressure</th>
+			</tr>
+			<tr>
+				<td id="currTemp"></td>
+				<td id="currFlow"></td>
+				<td id="currPres"></td>
+			</tr>
+		</table>
+	  </div>
+	<!-- Graph 3 -->
+	 <div class="inline">
+		<h3 >Device Identifier: <span id="currentdeviceTemp"></span></h3>
+		<section class="demo-container">
+		  <div id="placeholder3" class="demo-placeholder"></div>
+		</section>
 
-    <p></p>
-    <table width="30%">
-      <col width="200px" />
-      <tr>
-        <td><p>Device Identifer: </p> </td>
-        <td><p><input id="specificdeviceTemp" type="text" value="" style="text-align: right; width:10em"></input><p></td>
-      </tr>
-	  <tr>
-		<td><p>Sensor: </p></td>
-		<td><select id="graphPickTemp">
-				<option value="all">all sensors</option>
-				<option value="temperature">Temperature</option>
-		</select></td>
-      <tr>
-        <td><p>Time between updates:</p></td>
-        <td><p><input id="updateIntervalTemp" type="text" value="" style="text-align: right; width:10em"></input> milliseconds [0 = stop]</p></td>
-      </tr>
-      <tr>
-        <td><p>Time Window:</p></td>
-        <td><p><input id="timeWindowTemp" type="text" value="" style="text-align: right; width:10em"></input> minutes</p></td>
-      </tr>
-      <tr>
-        <td><p>Application Status: </p></td>
-        <td><span id="appstatusTemp"> </span></td>
-      </tr>
-      <tr>
-        <td><p>Application Console:</td>
-          <td> <span id="appconsoleTemp"> </span></p></td>
-        </tr>
-    </table>
-  </div>
-</div>
-<div>
-	<table style="border:1px solid white;border-spacing:5px;">
-		<tr>
-			<th>Temperature</th>
-			<th>Flow</th>
-			<th>Pressure</th>
-		</tr>
-		<tr>
-			<td id="currTemp"></td>
-			<td id="currFlow"></td>
-			<td id="currPres"></td>
-		</tr>
-	</table>
-</div>
+		<p></p>
+		<table width="30%">
+		  <col width="200px" />
+		  <tr>
+			<td><p>Device Identifer: </p> </td>
+			<td><p><input id="specificdevice3" type="text" value="" style="text-align: right; width:10em"></input><p></td>
+		  </tr>
+		  <tr>
+			<td><p>Sensor: </p></td>
+			<td><select id="graphPick3">
+					<option value="all">all sensors</option>
+					<option value="temperature">Temperature</option>
+			</select></td>
+		  <tr>
+			<td><p>Time between updates:</p></td>
+			<td><p><input id="updateInterval3" type="text" value="" style="text-align: right; width:10em"></input> milliseconds [0 = stop]</p></td>
+		  </tr>
+		  <tr>
+			<td><p>Time Window:</p></td>
+			<td><p><input id="timeWindow3" type="text" value="" style="text-align: right; width:10em"></input> minutes</p></td>
+		  </tr>
+		  <tr>
+			<td><p>Application Status: </p></td>
+			<td><span id="appstatus3"> </span></td>
+		  </tr>
+		  <tr>
+			<td><p>Application Console:</td>
+			  <td> <span id="appconsole3"> </span></p></td>
+			</tr>
+		</table>
+		<table style="border:1px solid white;border-spacing:5px;">
+			<tr>
+				<th>Temperature</th>
+				<th>Flow</th>
+				<th>Pressure</th>
+			</tr>
+			<tr>
+				<td id="currTemp"></td>
+				<td id="currFlow"></td>
+				<td id="currPres"></td>
+			</tr>
+		</table>
+	  </div>
+	</div>
+	<div>
+		<table style="border:1px solid white;border-spacing:5px;">
+			<tr>
+				<th>Temperature</th>
+				<th>Flow</th>
+				<th>Pressure</th>
+			</tr>
+			<tr>
+				<td id="currTemp"></td>
+				<td id="currFlow"></td>
+				<td id="currPres"></td>
+			</tr>
+		</table>
+	</div>
 </body>
-</html>
