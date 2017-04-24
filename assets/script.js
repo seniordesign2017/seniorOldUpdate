@@ -8,7 +8,7 @@ $(function() {
 	var updateInterval = 1000; //milliseconds
 	var timeWindow = 10; //minutes
 	var red_color = '#6B0023';
-	var graphType = "all";
+	var graphType = "temper";
 
     var graph_options = {
         series: {
