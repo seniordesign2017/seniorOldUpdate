@@ -20,11 +20,14 @@ local resp = Keystore.get({key = "identifier_" .. data.device_sn})
 
 -- Make sure each device has the following keys stored
 local value = {
-  temperature = "undefined",
   flow = "undefined",
-  uptime = "undefined",
   pressure = "undefined",
-  state = "undefined"
+  state = "undefined",
+  humdiity = "undefined",
+  pressure2 = "undefined,
+  atmoPressure = "undefined",
+  pumpTemperature = "undefined",
+  current = "undefined"
 }
 if type(resp) == "table" and type(resp.value) == "string" then
   value = from_json(resp.value) -- Decode from JSON to Lua Table
