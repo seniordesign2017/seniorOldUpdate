@@ -83,7 +83,7 @@ $(function() {
 						friendly = "Temperature";
 				
 					}else if (friendly == "flow"){
-						units = "Flow";
+						units = "GPM";
 						friendly = "Flow";
 						
 					}else if(friendly == "pressure"){
