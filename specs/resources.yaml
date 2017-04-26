@@ -3,16 +3,18 @@ resources:
 - alias: state
   format: string
 - alias: pumpTemperature
-  format: integer
+  format: float
 - alias: flow
-  format: integer
+  format: float
 - alias: pressure
-  format: integer
+  format: float
 - alias: pressure2
-  format: integer
+  format: float
 - alias: humidity
-  format: integer
+  format: float
 - alias: current
-  format: integer
+  format: float
 - alias: uptime
   format: integer
+- alias: atmoPressure
+  format: float
