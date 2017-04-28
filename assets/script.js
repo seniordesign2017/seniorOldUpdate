@@ -83,6 +83,252 @@ $(function() {
 					var units = "";
 					var last_val;
 					//check name of column and use correct unit
+					if (friendly == "pumpTemperature"){
+						units = "F";
+						friendly = "Pump Temperature";
+				
+					}else if (friendly == "flow"){
+						units = "GPM";
+						friendly = "Flow";
+						
+					}else if(friendly == "pressure"){
+						units = "PSI";
+						friendly = "Pressure";
+						
+					}else if(friendly == "pressure2"){
+						units="PSI";
+						friendly="Pressure2";
+						
+					}else if(friendly == "humidity"){
+						units = "%";
+						friendly= "Humidity";
+						
+					}else if(friendly == "current"){
+						units = "A";
+						friendly = "Current";
+						
+					}else if(friendly == "atmoPressure"){
+						units = "Pa";
+						friendly = "Barometric Pressure";
+					
+					}
+					
+
+					console.log(raw_data, j);
+
+					// reformat data for flot
+					for (var i = raw_data.length - 1; i >= 0; i--) {
+						if (raw_data[i][j] != null)
+						data.unshift([raw_data[i][0],raw_data[i][j]])
+					}
+					
+					// only push if data returned
+					if(graphType == "all"||(graphType=="temper" && friendly == "Pump Temperature")||(graphType=="press" && friendly == "Pressure")||(graphType == "flow"&& friendly == "Flow")(graphType=="press2" && friendly == "Pressure2")||(graphType=="bpress" && friendly == "Barometric Pressure")||(graphType=="curr" && friendly == "Current")||(graphType=="humid" && friendly == "Humidity")||){
+						
+						if (data.length > 0) {
+							last_val = data[data.length-1];
+							// put data into data_to_plot
+							data_to_plot.push({
+								label: friendly + ' - '+ last_val[1] + ' ' +units,
+								data: data,
+								units: units
+							});
+							
+							changeCurrentValue(last_val[1],friendly);
+							
+						}
+					}
+				}
+				$("#placeholder").text('');
+				$.plot("#placeholder", data_to_plot, graph_options);
+				$("#appconsole").text('Data Plotted');
+				$("#appconsole").css('color', '#555555');
+			
+			}
+			
+			if (updateInterval != 0){
+				setTimeout(fetchData, updateInterval);
+			}
+		}
+
+        function onError( jqXHR, textStatus, errorThrown) {
+			console.log('error: ' + textStatus + ',' + errorThrown);
+			$("#appconsole").text('No Server Response');
+			$("#appstatus").text('Server Offline');
+			$("#appstatus").css('color', red_color);
+			if (updateInterval != 0){
+				setTimeout(fetchData, updateInterval+3000);
+			}
+        }
+
+		$.ajax({
+			url: app_domain+"development/device/data?identifier="+myDevice+"&window="+timeWindow,
+			type: "GET",
+			dataType: "json",
+			success: onDataReceived,
+			crossDomain: true,
+			error: onError,
+			statusCode: {
+				504: function() {
+					console.log( "server not responding" );
+					$("#appstatus").text('Server Not Responding 504');
+					$("#appstatus").css('color', red_color);
+				}
+			}
+			,timeout: 10000
+        });
+
+	}
+
+	function updateValues(){
+        document.getElementById("graphButton").addEventListener("click", addGraph);
+        if($("#sleeperDiv2").text().length !=0){
+            //$('#remove2').on('click', removeGraph2());
+            //document.getElementById("remove2").addEventListener("click", removeGraph2);
+        }
+        if($("#sleeperDiv3").text().length !=0){
+            //document.getElementById("remove3").addEventListener("click", removeGraph3);
+            //$('#remove3').on('click', removeGraph3();});
+        }
+    }
+    
+	function changeCurrentValue(valueChange, valueColumn){
+		
+		if (valueColumn == "Temperature"){
+			$("#currTemp").text(valueChange);
+			
+		}else if(valueColumn == "Pressure"){
+			$("#currPres").text(valueChange);
+			
+		}else if(valueColumn == "Flow"){
+			$("#currFlow").text(valueChange);
+		}	
+	}
+	
+	function addGraph(){
+		if(index >= 3){
+			alert("Only 3 graphs allowed");
+		}else{
+			index++;
+			document.getElementById('sleeperDiv'+index).innerHTML = '<div class="contentDiv"><div id="main" class="graphContainer"><div class="inline"><h3 >Device Identifier: <span id="currentdevice'+ index + '"><div><button id="remove'+ index +'">Remove Graph</button></div></span></h3><section class="demo-container"><div id="placeholder' + index +'" class="demo-placeholder"></div></section><div><table width="33%"><col width="200px"><col width="500px"><tr><td><p>Device Identifer: </p> </td><td><p><input id="specificdevice'+ index +'" type="text" value="" style="text-align: right; width:10em"></input><p></td> </tr> <tr><td><p>Sensor: </p></td><td><select id="graphPick' + index + '"><option value="all">all sensors</option><option value="temperature">Temperature</option><option value="flow">Flow</option><option value="pressure">Pressure</option></select>	</td> <tr><td><p>Time between updates:</p></td><td><p><input id="updateInterval'+ index +'" type="text" value="" style="text-align: right; width:10em"></input> milliseconds [0 = stop]</p></td> </tr> <tr><td><p>Time Window:</p></td><td><p><input id="timeWindow' + index +'" type="text" value="" style="text-align: right; width:10em"></input> minutes</p></td> </tr> <tr><td><p>Application Status: </p></td><td><span id="appstatus' + index +'"> </span></td> </tr> <tr><td><p>Application Console:</td><td> <span id="appconsole'+ index +'"> </span></p></td></tr></table></div></div></div></div>';
+			if($("#sleeperDiv3").text().length != 0){
+				index = 3;
+			}
+		}
+		
+	}
+	
+	function removeGraph2(){
+		alert("check");
+		document.getElementById('sleeperDiv2').innerHTML = '';
+		index = 1;
+	}
+	function removeGraph3(){
+		alert("check2");
+		document.getElementById('sleeperDiv3').innerHTML = '';
+		index = 2;
+	}
+	
+	
+	
+	$("#graphPick").val(graphPick).change(function () {
+		selectedValue = $("#graphPick").val();
+		if (selectedValue == "temperature"){
+			graphType = "temper";
+			
+		}else if(selectedValue == "all"){
+			graphType = "all";
+			
+		}else if(selectedValue == "pressure"){
+			graphType = "press";
+			
+		}else if(selectedValue == "flow"){
+			graphType = "flow";
+			
+		}else if(selectedValue == "humidity"){
+			graphType = "humid"
+		}
+	});
+
+	// Set up the control widget
+	// get update interval from html
+	$("#updateInterval").val(updateInterval).change(function () {
+		var v = $(this).val();
+		if (v && !isNaN(+v)) {
+			if(updateInterval == 0)
+				{setTimeout(fetchData, 1000);} //updates were turned off, start again
+			updateInterval = +v;
+			if (updateInterval > 20000) {
+				updateInterval = 20000;
+			}
+			$(this).val("" + updateInterval);
+
+		}
+	});
+	//get timewindow from html
+	$("#timeWindow").val(timeWindow).change(function () {
+		var v = $(this).val();
+		if (v && !isNaN(+v)) {
+			timeWindow = +v;
+			if (timeWindow < 1) {
+				timeWindow = 1;
+			} else if (timeWindow > 360) {
+				timeWindow = 360;
+			}
+			$(this).val("" + timeWindow);
+		}
+	});
+	//change specific device to current device
+	$("#specificdevice").val(myDevice).change(function () {
+		var v = $(this).val();
+		if (v) {
+			myDevice = v;
+			console.log('new device identity:' + myDevice);
+			$(this).val("" + myDevice);
+			$("#currentdevice").text(myDevice);
+			$("#placeholder").text('Graph: Retrieving New Device Data Now....');
+		}
+	});
+
+	fetchData();
+
+	$("#footer").prepend("Exosite Murano Example");
+});
+        $("#appconsole").text('Fetching Data For '+myDevice+' From Server...');
+		$("#appconsole").css('color', '#555555');
+
+        // recent data is grabbed as newdata
+        function onDataReceived(newdata) {
+			$("#appstatus").text('Running');
+			$("#appstatus").css('color', '555555');
+			$("#appconsole").text('Processing Data');
+			$("#appconsole").css('color', '#555555');
+			var data_to_plot = [];
+			//Load all the data in one pass; if we only got partial
+			// data we could merge it with what we already have.
+            //console.log(series)
+			console.log(newdata);
+
+			//check if newdata has data
+			if (jQuery.isEmptyObject(newdata.timeseries.values)){
+            //newdata has no data
+            //Database error
+            console.log('no data in selected window, check device')
+            $("#appconsole").text('No data found in window for this device');
+            $("#placeholder").text('Graph: Data Not Found for: '+myDevice);
+			}else{
+				//newdata has data
+				console.log('valid data return for: '+myDevice);
+				//for each column in the newdata from timeseries 
+				
+				for (j = 1; j < newdata.timeseries.columns.length; j++){
+					var data = [];
+					//set data from newdata to raw_data
+					var raw_data = newdata.timeseries.values
+					var friendly = newdata.timeseries.columns[j];
+					var units = "";
+					var last_val;
+					//check name of column and use correct unit
 					if (friendly == "temperature"){
 						units = "F";
 						friendly = "Temperature";
