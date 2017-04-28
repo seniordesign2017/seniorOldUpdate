@@ -183,14 +183,12 @@ $(function() {
 	function updateValues(){
         document.getElementById("graphButton").addEventListener("click", addGraph);
         if($("#sleeperDiv2").text().length !=0){
-            $('#remove2').on('click', removeGraph2());
+            //$('#remove2').on('click', removeGraph2());
             //document.getElementById("remove2").addEventListener("click", removeGraph2);
         }
         if($("#sleeperDiv3").text().length !=0){
             //document.getElementById("remove3").addEventListener("click", removeGraph3);
-            $('#remove3').on('click', function(){
-                removeGraph3();
-            });
+            //$('#remove3').on('click', function(){                removeGraph3();            });
         }
     }
     
