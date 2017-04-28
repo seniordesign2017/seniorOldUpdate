@@ -1,6 +1,6 @@
 $(function() {
 	//REPLACE DEVICE UNIQUE IDENTIFIER / SERIAL NUMBER HERE
-	var myDevice = 'B4:21:8A:F0:70:91';//var myDevice = 'B4:21:8A:F0:2E:CE'; //default unique device identifier  B4:21:8A:F0:36:58
+	var myDevice = 'B4:21:8A:F0:2E:CE'; //default unique device identifier
 	//REPLACE WITH FULL APP DOMAIN IF RUNNING LOCALLY, OTHEWISE LEAVE AS "/"
 	var app_domain = '/';
 	var data = [];
@@ -8,10 +8,8 @@ $(function() {
 	var updateInterval = 1000; //milliseconds
 	var timeWindow = 10; //minutes
 	var red_color = '#6B0023';
-	var graphType = "temper";
-	var graphIndex = 0;
-	var index = 1;
-    
+	var graphType = "all";
+
     var graph_options = {
         series: {
             lines: { show: true, lineWidth: 1.5, fill: 0.1},
@@ -35,7 +33,6 @@ $(function() {
         colors: ["#2C9DB6","#FF921E","#FF5847","#FFC647", "#5D409C", "#BF427B","#D5E04D" ]
 	};
 
-	//$("#graphPick").val( "temper" );
 	$("#specificdevice").text(myDevice);
 	$("#currentdevice").text(myDevice);
 	$("#appstatus").text('Running');
@@ -45,7 +42,6 @@ $(function() {
 	$("#placeholder").text('Graph: Retrieving Data Now....');
 
     function fetchData() {
-        updateValues();
 		
 		console.log('fetching data from Murano');
         $("#appconsole").text('Fetching Data For '+myDevice+' From Server...');
@@ -74,7 +70,6 @@ $(function() {
 				//newdata has data
 				console.log('valid data return for: '+myDevice);
 				//for each column in the newdata from timeseries 
-				
 				for (j = 1; j < newdata.timeseries.columns.length; j++){
 					var data = [];
 					//set data from newdata to raw_data
@@ -112,7 +107,6 @@ $(function() {
 						friendly = "Barometric Pressure";
 					
 					}
-					
 
 					console.log(raw_data, j);
 
@@ -121,7 +115,7 @@ $(function() {
 						if (raw_data[i][j] != null)
 						data.unshift([raw_data[i][0],raw_data[i][j]])
 					}
-					
+
 					// only push if data returned
 					if(graphType == "all"||(graphType=="temper" && friendly == "Pump Temperature")||(graphType=="press" && friendly == "Pressure")||(graphType == "flow"&& friendly == "Flow")(graphType=="press2" && friendly == "Pressure2")||(graphType=="bpress" && friendly == "Barometric Pressure")||(graphType=="curr" && friendly == "Current")||(graphType=="humid" && friendly == "Humidity")){
 						
@@ -134,16 +128,12 @@ $(function() {
 								units: units
 							});
 							
-							changeCurrentValue(last_val[1],friendly);
-							
 						}
 					}
-				}
 				$("#placeholder").text('');
 				$.plot("#placeholder", data_to_plot, graph_options);
 				$("#appconsole").text('Data Plotted');
 				$("#appconsole").css('color', '#555555');
-			
 			}
 			
 			if (updateInterval != 0){
@@ -179,74 +169,26 @@ $(function() {
         });
 
 	}
-
-	function updateValues(){
-        document.getElementById("graphButton").addEventListener("click", addGraph);
-        if($("#sleeperDiv2").text().length !=0){
-            //$('#remove2').on('click', removeGraph2());
-            //document.getElementById("remove2").addEventListener("click", removeGraph2);
-        }
-        if($("#sleeperDiv3").text().length !=0){
-            //document.getElementById("remove3").addEventListener("click", removeGraph3);
-            //$('#remove3').on('click', function(){                removeGraph3();            });
-        }
-    }
-    
-	function changeCurrentValue(valueChange, valueColumn){
-		
-		if (valueColumn == "Temperature"){
-			$("#currTemp").text(valueChange);
-			
-		}else if(valueColumn == "Pressure"){
-			$("#currPres").text(valueChange);
-			
-		}else if(valueColumn == "Flow"){
-			$("#currFlow").text(valueChange);
-		}	
-	}
-	
-	function addGraph(){
-		if(index >= 3){
-			alert("Only 3 graphs allowed");
-		}else{
-			index++;
-			document.getElementById('sleeperDiv'+index).innerHTML = '<div class="contentDiv"><div id="main" class="graphContainer"><div class="inline"><h3 >Device Identifier: <span id="currentdevice'+ index + '"><div><button id="remove'+ index +'">Remove Graph</button></div></span></h3><section class="demo-container"><div id="placeholder' + index +'" class="demo-placeholder"></div></section><div><table width="33%"><col width="200px"><col width="500px"><tr><td><p>Device Identifer: </p> </td><td><p><input id="specificdevice'+ index +'" type="text" value="" style="text-align: right; width:10em"></input><p></td> </tr> <tr><td><p>Sensor: </p></td><td><select id="graphPick' + index + '"><option value="all">all sensors</option><option value="temperature">Temperature</option><option value="flow">Flow</option><option value="pressure">Pressure</option></select>	</td> <tr><td><p>Time between updates:</p></td><td><p><input id="updateInterval'+ index +'" type="text" value="" style="text-align: right; width:10em"></input> milliseconds [0 = stop]</p></td> </tr> <tr><td><p>Time Window:</p></td><td><p><input id="timeWindow' + index +'" type="text" value="" style="text-align: right; width:10em"></input> minutes</p></td> </tr> <tr><td><p>Application Status: </p></td><td><span id="appstatus' + index +'"> </span></td> </tr> <tr><td><p>Application Console:</td><td> <span id="appconsole'+ index +'"> </span></p></td></tr></table></div></div></div></div>';
-			if($("#sleeperDiv3").text().length != 0){
-				index = 3;
-			}
-		}
-		
-	}
-	
-	function removeGraph2(){
-		alert("check");
-		document.getElementById('sleeperDiv2').innerHTML = '';
-		index = 1;
-	}
-	function removeGraph3(){
-		alert("check2");
-		document.getElementById('sleeperDiv3').innerHTML = '';
-		index = 2;
-	}
-	
 	
 	
 	$("#graphPick").val(graphPick).change(function () {
 		selectedValue = $("#graphPick").val();
 		if (selectedValue == "temperature"){
 			graphType = "temper";
-			
 		}else if(selectedValue == "all"){
 			graphType = "all";
-			
 		}else if(selectedValue == "pressure"){
 			graphType = "press";
-			
 		}else if(selectedValue == "flow"){
 			graphType = "flow";
-			
 		}else if(selectedValue == "humidity"){
 			graphType = "humid"
+		}else if(selectedValue == "pressure2"){
+			graphType="press2";
+		}else if(selectedValue == "atmoPressure"){
+			graphType="bpress";
+		}else if(selectedValue == "current"){
+			graphType="curr";
 		}
 	});
 
